@@ -35,8 +35,6 @@ class ExtractFromZip:
         for year in track(years, description="Descompactando arquivos zip..."):
             self.extract_year(year)
 
-#%%
-
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Baixando dados do TSE')
     parser.add_argument('--inicio', '-i', type=int, help='Ano inicial a ser baixado')
@@ -49,5 +47,5 @@ if __name__ == "__main__":
 
 # %%
 
-extractor = ExtractFromZip()
-extractor.extract_years(range(2000, 2025, 2))
+# extractor = ExtractFromZip()
+# extractor.extract_years(range(2000, 2025, 2))
