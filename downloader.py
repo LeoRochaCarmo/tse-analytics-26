@@ -96,7 +96,7 @@ class DownloadTSE:
         self.download_motivo_cacacao(ano, os.path.join(DATA_PATH, str(ano)))
         self.download_votacao_candidato_municipio_zona(ano, os.path.join(DATA_PATH, str(ano)))
 
-    def download_anos(self, anos:list):
+    def download_anos(self, anos):
         for ano in track(anos,description='Baixando dados dos anos...'):
             self.download_ano(ano)
 

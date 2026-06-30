@@ -1,5 +1,7 @@
 *.zip
 *.csv
 *pdf
+*.json
+DockerFile
 
 
