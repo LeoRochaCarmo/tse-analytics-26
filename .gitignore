@@ -1,7 +1,10 @@
 *.zip
 *.csv
 *pdf
-*.json
-DockerFile
-
-
+0*.json
+*. 
+*snappy.parquet
+*snappy.parquet.crc
+*.crc.crc
+*.crc
+*_SUCCESS

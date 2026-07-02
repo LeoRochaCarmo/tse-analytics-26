@@ -1,0 +1,31 @@
+# Seleciona a imagem base recomendada pelo VS Code Dev Containers para Python
+FROM mcr.microsoft.com/devcontainers/python:3.13-bookworm
+
+# Evita perguntas interativas durante a instalação de pacotes
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Instala ferramentas essenciais do sistema e Java (necessário para o PySpark)
+# O PySpark 3.5+ é totalmente compatível e estável com o Java 17
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    openjdk-17-jdk-headless \
+    procps \
+    curl \
+ && apt-get clean \
+ && rm -rf /var/lib/apt/lists/*
+
+# Cria um link simbólico universal para o JAVA_HOME
+# Funciona tanto em arquiteturas x86_64 (amd64) quanto ARM64
+RUN ln -s /usr/lib/jvm/java-17-openjdk-* /usr/lib/jvm/java-17-openjdk
+
+ENV JAVA_HOME=/usr/lib/jvm/java-17-openjdk
+ENV PATH=${JAVA_HOME}/bin:${PATH}
+
+# Copia o arquivo requirements.txt para dentro do container
+COPY requirements.txt /tmp/pip-tmp/
+
+# Instala todos os pacotes Python de Engenharia e Ciência de Dados
+RUN pip3 --disable-pip-version-check --no-cache-dir install -r /tmp/pip-tmp/requirements.txt \
+ && rm -rf /tmp/pip-tmp
+
+# Define o usuário padrão para desenvolvimento do Dev Container
+USER vscode

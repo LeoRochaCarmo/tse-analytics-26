@@ -1,0 +1,34 @@
+{
+    "name": "Python Data Engineering",
+
+    "build": {
+        "dockerfile": "Dockerfile",
+        "context": ".."
+    },
+
+    "remoteUser": "vscode",
+
+    "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-python.python",
+                "ms-toolsai.jupyter",
+                "ms-azuretools.vscode-docker",
+                "ms-python.debugpy"
+            ],
+            "settings": {
+                "python.defaultInterpreterPath": "/usr/local/bin/python",
+                "jupyter.askForKernelRestart": false,
+                "python.analysis.typeCheckingMode": "basic"
+            }
+        }
+    },
+
+    "forwardPorts": [
+        8888
+    ],
+
+    "postCreateCommand": "pip install --upgrade pip && python -m ipykernel install --user --name pyspark-env --display-name \"Python (PySpark)\""
+}
